@@ -1,0 +1,108 @@
+<!-- 
+Quincy Mattor
+2/10/22
+
+HTML for a javascript math practice site
+-->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>neat math thing</title>
+        <style>
+            body{
+                text-align: center;
+                background-color: #34eb43;
+                font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <p id="expr"></p>
+        <br>
+        <input id="ans" type="text">
+        <button onclick="check_ans()">Submit</button>
+        <p id="results"></p>
+    </body>
+    <script>
+        var num1 = Math.floor(Math.random() * 20) - 10;
+        var num2 = Math.floor(Math.random() * 20) - 10;
+        var opp = Math.floor(Math.random() * 3);
+        var score = 0
+        function check_ans()
+        {
+            var ans = parseInt(document.querySelector("#ans").value);
+            if (opp % 2 == 0)
+            {
+                //plus
+                if (num1 + num2 == ans)
+                {
+                    document.querySelector("#results").innerHTML = "Well done!";
+                    document.querySelector("body").style.background = "#34eb43"
+                    new_nums()
+                    score += 1;
+                }
+                else
+                {
+                    document.querySelector("#results").innerHTML = "Not Quite, try again";
+                    document.querySelector("body").style.background = "#d44242"
+                }
+            }
+            else if (opp % 3 == 1)
+            {
+                if (num1 * num2 == ans)
+                {
+                    document.querySelector("#results").innerHTML = "Well done!";
+                    document.querySelector("body").style.background = "#34eb43"
+                    new_nums()
+                    score += 1;
+                }
+                else
+                {
+                    document.querySelector("#results").innerHTML = "Not Quite, try again";
+                    document.querySelector("body").style.background = "#d44242"
+                }
+            }
+            else
+            {
+                //subtract
+                if (num1 - num2 == ans)
+                {
+                    document.querySelector("#results").innerHTML = "Well done!";
+                    document.querySelector("body").style.background = "#34eb43"
+                    new_nums()
+                    score += 1;
+                }
+                else
+                {
+                    document.querySelector("#results").innerHTML = "Not Quite, try again";
+                    document.querySelector("body").style.background = "#d44242"
+                }
+            }
+        }
+        
+        function new_nums()
+        {
+            num1 = Math.floor(Math.random() * 20) - 10;
+            num2 = Math.floor(Math.random() * 20) - 10;
+            opp = Math.floor(Math.random() * 3);
+            var op = "";
+            console.log(num1);
+            console.log(num2);
+            if (opp % 3 == 0)
+            {
+                op = "+";
+            }
+            else if (opp % 3 == 1)
+            {
+                op = "*"
+            }
+            else
+            {
+                op = "-";
+            }
+            document.querySelector("#expr").innerHTML = num1 + " " + op + " " + num2 + " ";
+        }
+        new_nums()
+        
+    </script>
+</html>
